@@ -1,0 +1,455 @@
+/*!
+ * DrewMark Parser CSS — Sample Theme
+ *
+ * This file provides a ready-made visual theme for DrewMark parser output.
+ * All styles are scoped to .drewmark-output so they won't affect the rest of your page.
+ *
+ * Usage:
+ *   1. Add class="drewmark-output" to the element that receives parser output.
+ *   2. Adjust the CSS variables in :root (or override them on .drewmark-output)
+ *      to match your design system.
+ *   3. You may also edit individual rules freely — this file is a starting point,
+ *      not a locked-in dependency.
+ *
+ * Note: drewmark-editor.css already includes these styles (scoped to .drewmark-output)
+ * for the editor's built-in preview pane. If you are using the editor, you do NOT
+ * need to load this file separately.
+ */
+
+/* ═══════════════════════════════════════════════
+   CSS Variables
+   — edit these to re-theme the output in one place
+   ═══════════════════════════════════════════════ */
+:root {
+  --dm-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Microsoft YaHei', sans-serif;
+  --dm-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+
+  --dm-bg: #ffffff;
+  --dm-bg-code: #f0f2f5;
+  --dm-bg-code-block: #1e1e2e;
+  --dm-border: #dee2e6;
+  --dm-border-light: #e9ecef;
+
+  --dm-text: #212529;
+  --dm-text-muted: #6c757d;
+  --dm-text-code: #c0392b;
+  --dm-text-code-block: #cdd6f4;
+
+  --dm-primary: #4361ee;
+  --dm-primary-hover: #3451d1;
+
+  --dm-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --dm-radius: 6px;
+  --dm-radius-sm: 3px;
+
+  --dm-blockquote-border: #4361ee;
+  --dm-blockquote-bg: #f0f4ff;
+  --dm-mark-bg: #fff3cd;
+  --dm-mark-color: #856404;
+
+  --dm-table-header-bg: #f1f3f5;
+  --dm-table-row-even: #f8f9fa;
+  --dm-table-border: #dee2e6;
+}
+
+/* ═══════════════════════════════════════════════
+   Output Container
+   ═══════════════════════════════════════════════ */
+.drewmark-output {
+  font-family: var(--dm-font);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--dm-text);
+  word-break: break-word;
+}
+
+/* ═══════════════════════════════════════════════
+   Headings
+   ═══════════════════════════════════════════════ */
+.drewmark-output h1,
+.drewmark-output h2,
+.drewmark-output h3,
+.drewmark-output h4,
+.drewmark-output h5,
+.drewmark-output h6 {
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 1.4em 0 0.6em;
+  color: var(--dm-text);
+}
+
+.drewmark-output h1 { font-size: 2em; border-bottom: 2px solid var(--dm-border); padding-bottom: 0.3em; }
+.drewmark-output h2 { font-size: 1.6em; border-bottom: 1px solid var(--dm-border-light); padding-bottom: 0.25em; }
+.drewmark-output h3 { font-size: 1.3em; }
+.drewmark-output h4 { font-size: 1.15em; }
+.drewmark-output h5 { font-size: 1em; }
+.drewmark-output h6 { font-size: 0.9em; color: var(--dm-text-muted); }
+
+/* ═══════════════════════════════════════════════
+   Paragraph & Horizontal Rule
+   ═══════════════════════════════════════════════ */
+.drewmark-output p {
+  margin: 0.8em 0;
+}
+
+.drewmark-output hr {
+  border: none;
+  border-top: 2px solid var(--dm-border);
+  margin: 1.5em 0;
+}
+
+/* ═══════════════════════════════════════════════
+   Inline Text Decorations
+   ═══════════════════════════════════════════════ */
+.drewmark-output strong { font-weight: 700; }
+.drewmark-output em { font-style: italic; }
+.drewmark-output del { text-decoration: line-through; color: var(--dm-text-muted); }
+.drewmark-output ins { text-decoration: underline; text-underline-offset: 2px; }
+.drewmark-output mark {
+  background: var(--dm-mark-bg);
+  color: var(--dm-mark-color);
+  padding: 0.1em 0.25em;
+  border-radius: var(--dm-radius-sm);
+}
+.drewmark-output sup { font-size: 0.75em; vertical-align: super; }
+.drewmark-output sub { font-size: 0.75em; vertical-align: sub; }
+.drewmark-output small { font-size: 0.8em; color: var(--dm-text-muted); }
+
+/* ═══════════════════════════════════════════════
+   Inline Code
+   ═══════════════════════════════════════════════ */
+.drewmark-output code {
+  font-family: var(--dm-mono);
+  font-size: 0.875em;
+  background: var(--dm-bg-code);
+  color: var(--dm-text-code);
+  padding: 0.15em 0.4em;
+  border-radius: var(--dm-radius-sm);
+  border: 1px solid var(--dm-border-light);
+  white-space: pre-wrap;
+}
+
+/* ═══════════════════════════════════════════════
+   Code Block
+   ═══════════════════════════════════════════════ */
+.drewmark-output pre {
+  position: relative;
+  background: var(--dm-bg-code-block);
+  border-radius: var(--dm-radius);
+  margin: 1em 0;
+  padding: 1.2em 1.4em;
+  overflow-x: auto;
+  box-shadow: var(--dm-shadow);
+}
+
+.drewmark-output pre:has(button) {
+  padding-top: 1.5em;
+}
+
+.drewmark-output pre code {
+  display: block;
+  font-family: var(--dm-mono);
+  font-size: 0.875em;
+  background: none;
+  color: var(--dm-text-code-block);
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+
+/* Language label */
+.drewmark-output pre > span {
+  position: absolute;
+  top: 0.25em;
+  left: 1em;
+  font-family: var(--dm-mono);
+  font-size: 0.75em;
+  color: #6e6c7e;
+  text-transform: lowercase;
+  user-select: none;
+}
+
+/* Copy button */
+.drewmark-output pre > button[aria-label=Copy] {
+  position: absolute;
+  top: 0.4em;
+  right: 0.8em;
+  background: #313244;
+  color: #cdd6f4;
+  border: none;
+  padding: 3px 10px;
+  border-radius: var(--dm-radius-sm);
+  font-size: 0.75em;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: var(--dm-font);
+}
+
+.drewmark-output pre > button[aria-label=Copy]:hover {
+  background: var(--dm-primary);
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════════
+   Blockquote
+   ═══════════════════════════════════════════════ */
+.drewmark-output blockquote {
+  position: relative;
+  background: var(--dm-blockquote-bg);
+  margin: 0.6em 0 0.6em 18px;
+  padding-left: 0.6em;
+  border-radius: 2px 0 0 2px;
+  color: #3d4a5c;
+  border-left: 4px solid var(--dm-blockquote-border);
+  box-sizing: border-box;
+
+  & & {
+    border-left-color: #7c3aed;
+    background: #f5f0ff;
+  }
+
+  & & & {
+    border-left-color: #059669;
+    background: #f0fdf4;
+  }
+
+  & & & & {
+    margin-left: 72px;
+    border-left-color: #e11d48;
+    background: #fff1f2;
+  }
+
+  & & & & & {
+    margin-left: 90px;
+    border-left-color: #ea580c;
+    background: #fffbeb;
+  }
+
+  & & & & & & {
+    margin-left: 108px;
+    border-left-color: #0891b2;
+    background: #ecfeff;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   Links
+   ═══════════════════════════════════════════════ */
+.drewmark-output a {
+  color: var(--dm-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.drewmark-output a:hover {
+  color: var(--dm-primary-hover);
+  border-bottom-color: var(--dm-primary-hover);
+}
+
+/* ═══════════════════════════════════════════════
+   Images
+   ═══════════════════════════════════════════════ */
+.drewmark-output img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--dm-radius);
+  box-shadow: var(--dm-shadow);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* ═══════════════════════════════════════════════
+   Lists
+   ═══════════════════════════════════════════════ */
+.drewmark-output ul,
+.drewmark-output ol {
+  padding-left: 2em;
+  margin: 0.7em 0;
+}
+
+.drewmark-output li {
+  margin: 0.3em 0;
+}
+
+/* Task list */
+.drewmark-output ul.task-list {
+  list-style: none;
+  padding-left: 1.5em;
+}
+
+.drewmark-output ul.task-list > li {
+  list-style: none;
+}
+
+.drewmark-output ul.task-list input[type="checkbox"] {
+  margin-right: 6px;
+  vertical-align: middle;
+  accent-color: var(--dm-primary);
+  transform: scale(1.1);
+}
+
+/* ═══════════════════════════════════════════════
+   Tables
+   ═══════════════════════════════════════════════ */
+.drewmark-output table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  font-size: 0.9em;
+  border-radius: var(--dm-radius);
+  overflow: hidden;
+  box-shadow: var(--dm-shadow);
+}
+
+.drewmark-output table caption {
+  font-weight: 600;
+  color: var(--dm-text-muted);
+  padding: 0.5em 0;
+  caption-side: top;
+  text-align: center;
+}
+
+.drewmark-output th,
+.drewmark-output tfoot td {
+  background: var(--dm-table-header-bg);
+  font-weight: 600;
+  padding: 0.7em 1em;
+  border: 1px solid var(--dm-table-border);
+}
+
+.drewmark-output td {
+  padding: 0.6em 1em;
+  border: 1px solid var(--dm-table-border);
+}
+
+.drewmark-output tbody tr:nth-child(even) td {
+  background: var(--dm-table-row-even);
+}
+
+.drewmark-output tbody tr:hover td {
+  background: #eef0f3;
+}
+
+/* ═══════════════════════════════════════════════
+   Definition List
+   ═══════════════════════════════════════════════ */
+.drewmark-output dl {
+  margin: 0.8em 0;
+  padding: 0;
+}
+
+.drewmark-output dt {
+  font-weight: 700;
+  color: var(--dm-text);
+  margin-top: 0.6em;
+}
+
+.drewmark-output dd {
+  margin-left: 1.8em;
+  color: var(--dm-text-muted);
+  margin-bottom: 0.2em;
+}
+
+/* ═══════════════════════════════════════════════
+   Details / Summary
+   ═══════════════════════════════════════════════ */
+.drewmark-output details {
+  border: 1px solid var(--dm-border);
+  border-radius: var(--dm-radius);
+  padding: 0.5em 1em;
+  margin: 0.8em 0;
+  background: var(--dm-bg);
+}
+
+.drewmark-output details > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--dm-primary);
+  padding: 0.2em 0;
+  user-select: none;
+  list-style: none;
+}
+
+.drewmark-output details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.drewmark-output details > summary::before {
+  content: '▶';
+  display: inline-block;
+  margin-right: 0.4em;
+  font-size: 0.7em;
+  transition: transform 0.2s;
+  vertical-align: middle;
+}
+
+.drewmark-output details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+/* Nested details */
+.drewmark-output details details {
+  margin-left: 1em;
+  border-color: var(--dm-border-light);
+  background: var(--dm-bg-code);
+}
+
+/* ═══════════════════════════════════════════════
+   Progress Bar  ((value//max))
+   ═══════════════════════════════════════════════ */
+.drewmark-output progress {
+  width: 120px;
+  height: 14px;
+  vertical-align: middle;
+  margin: 0 4px;
+  border: none;
+  border-radius: 7px;
+  background: var(--dm-border-light);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.drewmark-output progress::-webkit-progress-bar {
+  background: var(--dm-border-light);
+  border-radius: 7px;
+}
+
+.drewmark-output progress::-webkit-progress-value {
+  background: var(--dm-primary);
+  border-radius: 7px;
+  transition: width 0.3s;
+}
+
+.drewmark-output progress::-moz-progress-bar {
+  background: var(--dm-primary);
+  border-radius: 7px;
+}
+
+.drewmark-output progress + span {
+  font-size: 0.78em;
+  color: var(--dm-text-muted);
+  vertical-align: middle;
+}
+
+/* ═══════════════════════════════════════════════
+   Scrollbar (webkit)
+   ═══════════════════════════════════════════════ */
+.drewmark-output::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.drewmark-output::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.drewmark-output::-webkit-scrollbar-thumb {
+  background: #c1c8d0;
+  border-radius: 3px;
+}
+
+.drewmark-output::-webkit-scrollbar-thumb:hover {
+  background: #a0a8b0;
+}

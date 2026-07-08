@@ -1,0 +1,30 @@
+{
+  "name": "drewmark-parser",
+  "version": "1.0.0",
+  "description": "A full-featured parser for the DrewMark markup language — zero dependencies, Vanilla JS",
+  "main": "js/drewmark-parser.min.js",
+  "files": [
+    "js/drewmark-parser.min.js",
+    "js/validate.js",
+    "js/emoji-data.js",
+    "css/drewmark-parser.css"
+  ],
+  "keywords": [
+    "drewmark",
+    "markup",
+    "parser",
+    "html",
+    "vanilla",
+    "zero-dependencies"
+  ],
+  "author": "drewneon",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drewneon/drewmark-js-parser.git"
+  },
+  "homepage": "https://github.com/drewneon/drewmark-js-parser",
+  "bugs": {
+    "url": "https://github.com/drewneon/drewmark-js-parser/issues"
+  }
+}
