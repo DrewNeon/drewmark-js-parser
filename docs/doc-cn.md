@@ -18,9 +18,9 @@
 
 ## 1. 项目简介
 
-[朱码](../../../../drewneon/drewmark) 是一款受 [Markdown](https://daringfireball.net/projects/markdown/) 和 [Showdown](https://github.com/showdownjs/showdown) 所启发的全功能型标记语言系统。
+[朱码](../../../../../drewneon/drewmark) 是一款受 [Markdown](https://daringfireball.net/projects/markdown/) 和 [Showdown](https://github.com/showdownjs/showdown) 所启发的全功能型标记语言系统。
 
-*朱码 JS 解析器*是为*朱码*量身定制的一款解析器，基于原生 JavaScript（Vanilla JS）开发，无需任何第三方库即可将符合*朱码*语法的文本解析输出为 HTML 格式。*朱码 JS 解析器*支持*朱码*的全部语法规则，请查看[朱码文档](../../../../drewneon/drewmark/blob/main/docs/doc-cn.md)了解详细的语法规则。
+*朱码 JS 解析器*是为*朱码*量身定制的一款解析器，基于原生 JavaScript（Vanilla JS）开发，无需任何第三方库即可将符合*朱码*语法的文本解析输出为 HTML 格式。*朱码 JS 解析器*支持*朱码*的全部语法规则，请查看[朱码文档](../../../../../drewneon/drewmark/blob/main/docs/doc-cn.md)了解详细的语法规则。
 
 **额外说明**
 1. 表情语法兼容前后单冒号，例如`:smile:` = `::smile::`。

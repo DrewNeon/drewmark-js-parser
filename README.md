@@ -117,9 +117,9 @@ See [`docs/doc.md`](docs/doc.md) for the full API reference.
 
 ## Related Projects
 
-[DrewMark](../../../../drewneon/drewmark) (syntax specification)
-[DrewMark JS Editor](../../../../drewneon/drewmark-js-editor) (WYSIWYG editor)
-[DrewMark JS Converter](../../../../drewneon/drewmark-js-converter) (convert between three formats)
+* [DrewMark](../../../../drewneon/drewmark) (syntax specification)
+* [DrewMark JS Editor](../../../../drewneon/drewmark-js-editor) (WYSIWYG editor)
+* [DrewMark JS Converter](../../../../drewneon/drewmark-js-converter) (convert between three formats)
 
 ---
 
