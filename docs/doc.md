@@ -20,7 +20,7 @@
 
 [DrewMark](../../../../../drewneon/drewmark) is a full-featured markup language system inspired by [Markdown](https://daringfireball.net/projects/markdown/) and [Showdown](https://github.com/showdownjs/showdown).
 
-The DrewMark JS Parser is a custom-built parser tailored specifically for DrewMark. Developed with Vanilla JavaScript, it requires no third-party libraries to parse plain text conforming to DrewMark syntax and output it in HTML format. The DrewMark JS Parser supports the complete set of DrewMark syntax rules. Please refer to [DrewMark document](../../../../../drewneon/drewmark/docs/doc.md) for detailed syntax specifications.
+The DrewMark JS Parser is a custom-built parser tailored specifically for DrewMark. Developed with Vanilla JavaScript, it requires no third-party libraries to parse plain text conforming to DrewMark syntax and output it in HTML format. The DrewMark JS Parser supports the complete set of DrewMark syntax rules. Please refer to [DrewMark document](../../../../../drewneon/drewmark/blob/main/docs/doc.md) for detailed syntax specifications.
 
 **Additional Notes**
 1. Emoji syntax is compatible with both single and double colons as delimiters, e.g. `:smile:` is equivalent to `::smile::`.
