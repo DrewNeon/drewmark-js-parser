@@ -11,7 +11,7 @@
 
 # DrewMark JS Parser
 
-A custom-built parser for [DrewMark](https://github.com/drewneon/drewmark), developed with **Vanilla JavaScript** — zero dependencies. Parses DrewMark-formatted plain text into standard HTML.
+A custom-built parser for [DrewMark](/drewneon/drewmark), developed with **Vanilla JavaScript** — zero dependencies. Parses DrewMark-formatted plain text into standard HTML.
 
 ---
 
@@ -117,9 +117,9 @@ See [`docs/doc.md`](docs/doc.md) for the full API reference.
 
 ## Related Projects
 
-[DrewMark](https://github.com/drewneon/drewmark) (syntax specification)
-[DrewMark JS Editor](https://github.com/drewneon/drewmark-js-editor) (WYSIWYG editor)
-[DrewMark JS Converter](https://github.com/drewneon/drewmark-js-converter) (convert between three formats)
+[DrewMark](/drewneon/drewmark) (syntax specification)
+[DrewMark JS Editor](/drewneon/drewmark-js-editor) (WYSIWYG editor)
+[DrewMark JS Converter](/drewneon/drewmark-js-converter) (convert between three formats)
 
 ---
 
