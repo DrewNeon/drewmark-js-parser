@@ -18,9 +18,9 @@
 
 ## 1. Project Introduction
 
-[DrewMark](../../../../../drewneon/drewmark) is a full-featured markup language system inspired by [Markdown](https://daringfireball.net/projects/markdown/) and [Showdown](https://github.com/showdownjs/showdown).
+[DrewMark](https://github.com/drewneon/drewmark) is a full-featured markup language system inspired by [Markdown](https://daringfireball.net/projects/markdown/) and [Showdown](https://github.com/showdownjs/showdown).
 
-The DrewMark JS Parser is a custom-built parser tailored specifically for DrewMark. Developed with Vanilla JavaScript, it requires no third-party libraries to parse plain text conforming to DrewMark syntax and output it in HTML format. The DrewMark JS Parser supports the complete set of DrewMark syntax rules. Please refer to [DrewMark document](../../../../../drewneon/drewmark/blob/main/docs/doc.md) for detailed syntax specifications.
+The DrewMark JS Parser is a custom-built parser tailored specifically for DrewMark. Developed with Vanilla JavaScript, it requires no third-party libraries to parse plain text conforming to DrewMark syntax and output it in HTML format. The DrewMark JS Parser supports the complete set of DrewMark syntax rules. Please refer to [DrewMark document](https://github.com/drewneon/drewmark/blob/main/docs/doc.md) for detailed syntax specifications.
 
 **Additional Notes**
 1. Emoji syntax is compatible with both single and double colons as delimiters, e.g. `:smile:` is equivalent to `::smile::`.
@@ -32,7 +32,96 @@ The DrewMark JS Parser is a custom-built parser tailored specifically for DrewMa
 
 ## 2. Quick Start
 
-Parsing DrewMark content can be achieved with just two lines of JavaScript code.
+### Option 1: Bundled Projects (Node.js + Build Tools)
+
+For projects using build tools such as Webpack, Vite, or Rollup.
+
+**1. Install Dependencies**
+
+```bash
+npm install drewmark-parser
+```
+
+**2. Import and Use in Source Code**
+
+```javascript
+// src/app.js
+import { drewmarkParser } from 'drewmark-parser';
+
+const content = '# Heading\nThis is a **DrewMark** text.';
+const html = drewmarkParser(content); // The actural value  is '<h1>Heading<br>This is a <strong>DrewMark</strong> text.</h1>'
+
+// Render the result to the page or process it further
+document.getElementById('output').innerHTML = html;
+```
+
+> ⚠️ The `import` statement should be placed in your project's `.js` / `.ts` source files and will be resolved by the build tool during bundling. Browsers load the bundled output and do not execute this statement directly. Please ensure your build pipeline is properly configured before running the project.
+
+---
+
+### Option 2: Direct Browser Usage (No Build Tools)
+
+For plain HTML pages without a Node.js environment. Once loaded via a `<script>` tag, the Parser is exposed as a global variable.
+
+**1. Download the Library**
+
+Download `js/drewmark-parser.min.js` from this repository into your project directory. You may skip this step if referencing directly via CDN.
+
+**2. Include the Script**
+
+Choose one of the following two methods:
+
++ Reference the locally downloaded script:
+```html
+<script src="path/to/drewmark-parser.min.js"></script>
+```
+
++ Reference the script directly from CDN (skip the download step):
+```html
+<script src="https://unpkg.com/drewmark-parser@latest/js/drewmark-parser.min.js"></script>
+```
+
+**3. Parse Content**
+
+```html
+<script>
+  // Define the DrewMark source text
+  const content = '# Heading\nThis is a **DrewMark** text.';
+  // Parse the DrewMark source text into '<h1>Heading<br>This is a <strong>DrewMark</strong> text.</h1>' and render it to the page
+  document.getElementById('output').innerHTML = drewmarkParser(content);
+</script>
+
+```
+
+## Full Example
+
+Below is a complete parsing page based on Option 2.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <main>
+    <div id="source" hidden>
+# Heading
+This is a DrewMark text containing **bold** and %%italic%% formatting.
+    </div>
+  </main>
+  <!-- Include the DrewMark JS Parser -->
+  <script src="js/drewmark-parser.min.js"></script>
+  <script>
+    // Parse the DrewMark source into '<h1>Heading</h1><p>This is a DrewMark text containing <strong>bold</strong> and <em>italic</em> formatting.</p>' and render it inside <main>
+    document.getElementsByTagName('main')[0].innerHTML =
+      drewmarkParser(document.getElementById('source').innerText);
+  </script>
+</body>
+</html>
+
+```
+222Parsing DrewMark content can be achieved with just two lines of JavaScript code.
 
 ```html
   <script src="js/drewmark-parser.min.js"></script> <!-- Include the DrewMark JS Parser -->
@@ -89,7 +178,7 @@ drewmarkParser(content);
 
 ## 4. Optional Parameters
 
-When using the `drewmarkParser()` function, in addition to the required DrewMark source text, you can also adjust the parser's functionality via additional parameters: `drewmarkParser(content, {options})`. Multiple parameters should be separated by commas.
+When using the `drewmarkParser()` function, in addition to the required DrewMark source text, you can also adjust the Parser's functionality via additional parameters: `drewmarkParser(content, {options})`. Multiple parameters should be separated by commas.
 
 ### 4.1 Emoji Parsing
 
@@ -250,25 +339,25 @@ drewmarkParser(content, {disable_syntax: ['group_name', 'syntax_name', ...]});
 
 ### 4.6 Parameter Overview
 
-| Parameter Name      | Type     | Default Value | Description                                                            |
-| ------------------- | -------- | ------------- | ---------------------------------------------------------------------- |
-| `enable_emoji`      | boolean  | `false`       | Whether to parse emoji syntax                                          |
-| `enable_style`      | boolean  | `false`       | Whether to parse style block syntax and style attribute                |
-| `enhance_codeblock` | boolean  | `true`        | Whether to append code language display and copy button in code blocks |
-| `enhance_progress`  | boolean  | `true`        | Whether to append detailed numerical values when parsing progress bars |
-| `disable_syntax`    | array    | `[]`          | Disables specified syntax, preventing it from being parsed             |
+| Parameter Name (abbr)       | Type     | Default Value | Description                                                            |
+| --------------------------- | -------- | ------------- | ---------------------------------------------------------------------- |
+| `enable_emoji` (`e_e`)      | boolean  | `false`       | Whether to parse emoji syntax                                          |
+| `enable_style` (`e_s`)      | boolean  | `false`       | Whether to parse style block syntax and style attribute                |
+| `enhance_codeblock` (`e_c`) | boolean  | `true`        | Whether to append code language display and copy button in code blocks |
+| `enhance_progress` (`e_p`)  | boolean  | `true`        | Whether to append detailed numerical values when parsing progress bars |
+| `disable_syntax` (`d_s`)    | array    | `[]`          | Disables specified syntax, preventing it from being parsed             |
 
 ---
 
 ## 5. Security
 
-*DrewMark JS Parser* consistently prioritizes security as a core design objective when parsing plain text into HTML. The parser never directly executes any user input; all output is either escaped or validated to ensure the final generated HTML contains no executable malicious code. Specific measures include the following aspects.
+*DrewMark JS Parser* consistently prioritizes security as a core design objective when parsing plain text into HTML. The Parser never directly executes any user input; all output is either escaped or validated to ensure the final generated HTML contains no executable malicious code. Specific measures include the following aspects.
 
 ### 5.1 Input Control
 
 **URL Protocol Whitelist**
 
-The parser applies a unified protocol whitelist filter to all URLs within syntaxes such as links, images, audio, video, etc. Only the following protocols are permitted:
+The Parser applies a unified protocol whitelist filter to all URLs within syntaxes such as links, images, audio, video, etc. Only the following protocols are permitted:
 
 - Standard web protocols: `http:` or `https:`
 - Email protocol: `mailto:`
@@ -283,7 +372,7 @@ The source annotation `{<=URL}` in quote syntax is validated via the `isValidUrl
 
 ### 5.2 Attribute Validation
 
-The parser uses an independent validation module to strictly validate values for all global attributes and parent tag attributes. This module is lazily loaded upon parser initialization and performs specific format checks for each attribute type:
+The Parser uses an independent validation module to strictly validate values for all global attributes and parent tag attributes. This module is lazily loaded upon parser initialization and performs specific format checks for each attribute type:
 
 | Global Attribute | Validation Rules                                                                                  |
 | ---------------- | ------------------------------------------------------------------------------------------------- |
@@ -304,13 +393,13 @@ The `style` attribute allows direct control over an element's visual presentatio
 
 **Validation Module Availability Check**
 
-Due to the complex format of `style` and `data-*` attribute values, the parser relies on a separate validation module to verify their syntax. If the validation module is not loaded (i.e., `window.DrewMarkValidate` is unavailable), these two types of attributes are rejected outright rather than being allowed through. This ensures that even if an abnormal script loading order results in a missing validation module, these attributes will never be output in an unvalidated state.
+Due to the complex format of `style` and `data-*` attribute values, the Parser relies on a separate validation module to verify their syntax. If the validation module is not loaded (i.e., `window.DrewMarkValidate` is unavailable), these two types of attributes are rejected outright rather than being allowed through. This ensures that even if an abnormal script loading order results in a missing validation module, these attributes will never be output in an unvalidated state.
 
 ### 5.3 Output Escaping
 
 **HTML Entity Escaping**
 
-When rendering HTML, the parser escapes **user-inputted text content** (including text nodes, code content, table titles, and etc.) via the `escHtml` function, converting five characters (`&`, `<`, `>`, `"`, `'`) into their corresponding HTML entities (`&amp;`, `&lt;`, `&gt;`, `&quot;`, `&#39;`). This prevents HTML tags in user text from being interpreted and executed by the browser. For example, if a user inputs `**<script>**`, the parser recognizes the `**` markup, extracts the text node `<script>`, escapes it to `&lt;script&gt;`, appends its own generated `<strong>` tags, and finally outputs `<strong>&lt;script&gt;</strong>`.
+When rendering HTML, the Parser escapes **user-inputted text content** (including text nodes, code content, table titles, and etc.) via the `escHtml` function, converting five characters (`&`, `<`, `>`, `"`, `'`) into their corresponding HTML entities (`&amp;`, `&lt;`, `&gt;`, `&quot;`, `&#39;`). This prevents HTML tags in user text from being interpreted and executed by the browser. For example, if a user inputs `**<script>**`, the Parser recognizes the `**` markup, extracts the text node `<script>`, escapes it to `&lt;script&gt;`, appends its own generated `<strong>` tags, and finally outputs `<strong>&lt;script&gt;</strong>`.
 
 **Attribute Value Escaping**
 
@@ -326,7 +415,7 @@ Code block content is first escaped via `escHtml` before being outputted into `<
 
 ### 5.4 Exception Fallback
 
-The parser wraps its main entry point in a `try-catch` block. If an error is thrown during parsing for any reason (abnormal input, regex backtracking errors, internal rule exceptions, etc.), the parser does not crash nor output blank content. Instead, it falls back to safely outputting the original text escaped via `escHtml` and wrapped in `<pre>` tags. This guarantees that even in extreme edge cases, users see escaped original text rather than an unusable blank page.
+The Parser wraps its main entry point in a `try-catch` block. If an error is thrown during parsing for any reason (abnormal input, regex backtracking errors, internal rule exceptions, etc.), the parser does not crash nor output blank content. Instead, it falls back to safely outputting the original text escaped via `escHtml` and wrapped in `<pre>` tags. This guarantees that even in extreme edge cases, users see escaped original text rather than an unusable blank page.
 
 ### 5.5 Syntax Disabling
 
@@ -334,4 +423,4 @@ Via the `disable_syntax` parameter, developers can precisely disable specific sy
 
 ---
 
-*Version: v2.8*
+*Version: v1.2.8*

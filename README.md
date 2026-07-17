@@ -11,24 +11,74 @@
 
 # DrewMark JS Parser
 
-A custom-built parser for [DrewMark](../../../../drewneon/drewmark), developed with **Vanilla JavaScript** — zero dependencies. Parses DrewMark-formatted plain text into standard HTML.
+A custom-built parser for [DrewMark](https://github.com/drewneon/drewmark), developed with **Vanilla JavaScript** — zero dependencies. Parses DrewMark-formatted plain text into standard HTML.
 
 ---
 
 ## Quick Start
 
-```html
-<script src="js/drewmark-parser.min.js"></script> <!-- Include the DrewMark JS Parser -->
-<script>
-  const html = drewmarkParser(content); // Parse DrewMark source text into HTML
-</script>
+### Option 1: Bundled Projects (Node.js + Build Tools)
+
+For projects using build tools such as Webpack, Vite, or Rollup.
+
+**1. Install Dependencies**
+
+```bash
+npm install drewmark-parser
 ```
 
-Parsing can be done by just two lines of code.
+**2. Import and Use in Source Code**
+
+```javascript
+// Import the Parser
+import { drewmarkParser } from 'drewmark-parser';
+
+const content = '# Heading\nThis is a **DrewMark** text.';
+const html = drewmarkParser(content); // The actural value  is '<h1>Heading<br>This is a <strong>DrewMark</strong> text.</h1>'
+
+// Render the result to the page or process it further
+document.getElementById('output').innerHTML = html;
+```
 
 ---
 
-## Complete Example
+### Option 2: Direct Browser Usage (No Build Tools)
+
+For plain HTML pages without a Node.js environment. Once loaded via a `<script>` tag, the Parser is exposed as a global variable.
+
+**1. Download the Library**
+
+Download `js/drewmark-parser.min.js` from this repository into your project directory. You may skip this step if referencing directly via CDN.
+
+**2. Include the Script**
+
+Choose one of the following two methods:
+
++ Reference the locally downloaded script:
+```html
+<script src="path/to/drewmark-parser.min.js"></script>
+```
+
++ Reference the script directly from CDN (skip the download step):
+```html
+<script src="https://unpkg.com/drewmark-parser@latest/js/drewmark-parser.min.js"></script>
+```
+
+**3. Parse Content**
+
+```html
+<script>
+  // Define the DrewMark source text
+  const content = '# Heading\nThis is a **DrewMark** text.';
+  // Parse the DrewMark source text to '<h1>Heading<br>This is a <strong>DrewMark</strong> text.</h1>' and render it to the page
+  document.getElementById('output').innerHTML = drewmarkParser(content);
+</script>
+
+```
+
+## Full Example
+
+Below is a complete parsing page based on Option 2.
 
 ```html
 <!DOCTYPE html>
@@ -40,18 +90,19 @@ Parsing can be done by just two lines of code.
   <main>
     <div id="source" hidden>
 # Heading
-This is a paragraph with **bold** and %%italic%%.
+This is a DrewMark text containing **bold** and %%italic%% formatting.
     </div>
   </main>
   <!-- Include the DrewMark JS Parser -->
   <script src="js/drewmark-parser.min.js"></script>
   <script>
-    // Output the parsed result into the <main> tag, replacing the original source text
+    // Parse the DrewMark source into '<h1>Heading</h1><p>This is a DrewMark text containing <strong>bold</strong> and <em>italic</em> formatting.</p>' and render it inside <main>
     document.getElementsByTagName('main')[0].innerHTML =
       drewmarkParser(document.getElementById('source').innerText);
   </script>
 </body>
 </html>
+
 ```
 
 ---
@@ -117,9 +168,9 @@ See [`docs/doc.md`](docs/doc.md) for the full API reference.
 
 ## Related Projects
 
-* [DrewMark](../../../../drewneon/drewmark) (syntax specification)
-* [DrewMark JS Editor](../../../../drewneon/drewmark-js-editor) (WYSIWYG editor)
-* [DrewMark JS Converter](../../../../drewneon/drewmark-js-converter) (convert between three formats)
+* [DrewMark](https://github.com/drewneon/drewmark) (syntax specification)
+* [DrewMark JS Editor](https://github.com/drewneon/drewmark-js-editor) (WYSIWYG editor)
+* [DrewMark JS Converter](https://github.com/drewneon/drewmark-js-converter) (convert between three formats)
 
 ---
 

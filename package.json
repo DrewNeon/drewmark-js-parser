@@ -1,13 +1,10 @@
 {
   "name": "drewmark-parser",
-  "version": "1.0.0",
-  "description": "A full-featured parser for the DrewMark markup language — zero dependencies, Vanilla JS",
+  "version": "1.2.8",
+  "description": "A full-featured parser for DrewMark markup language — zero dependencies, Vanilla JS",
   "main": "js/drewmark-parser.min.js",
   "files": [
-    "js/drewmark-parser.min.js",
-    "js/validate.js",
-    "js/emoji-data.js",
-    "css/drewmark-parser.css"
+    "js/drewmark-parser.min.js"
   ],
   "keywords": [
     "drewmark",

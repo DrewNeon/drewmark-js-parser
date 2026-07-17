@@ -11,24 +11,73 @@
 
 # 朱码 JS 解析器
 
-为[朱码](../../../../drewneon/drewmark)量身定制的解析器，基于**原生 JavaScript**（Vanilla JS）开发，零依赖。将符合朱码语法的文本解析输出为标准 HTML。
+为[朱码](https://gitee.com/drewneon/drewmark)量身定制的解析器，基于**原生 JavaScript**（Vanilla JS）开发，零依赖。将符合朱码语法的文本解析输出为标准 HTML。
 
 ---
 
 ## 快速开始
 
-```html
-<script src="js/drewmark-parser.min.js"></script> <!-- 引用朱码 JS 解析器 -->
-<script>
-  const html = drewmarkParser(content); // 将朱码原文解析为 HTML
-</script>
+### 方式一：工程化项目（Node.js + 构建工具）
+
+适用于使用 Webpack、Vite、Rollup 等构建工具的项目。
+
+**1. 安装依赖**
+
+```bash
+npm install drewmark-parser
 ```
 
-仅两行代码即可实现解析功能。
+**2. 在源码中导入并使用**
+
+```javascript
+// 导入解析器
+import { drewmarkParser } from 'drewmark-parser';
+
+const content = '# 标题\n这是一段**朱码**文本。';
+const html = drewmarkParser(content); // 实际值为：'<h1>标题<br>这是一段<strong>朱码</strong>文本。</h1>'
+
+// 将结果渲染到页面或进行后续处理
+document.getElementById('output').innerHTML = html;
+```
 
 ---
 
+### 方式二：浏览器直接调用（无构建工具）
+
+适用于纯 HTML 页面，无需 Node.js 环境，通过 `<script>` 标签加载后，解析器会以全局变量的形式挂载。
+
+**1. 下载依赖**
+
+从本仓库下载 `js/drewmark-parser.min.js` 至项目目录，如通过 CDN 直接引用则可跳过此步骤。
+
+**2. 引用脚本**
+
+两种方法二选一：
+
++ 引用下载到本地的脚本：
+```html
+<script src="path/to/drewmark-parser.min.js"></script>
+```
+
++ 从 CDN 直接引用脚本（跳过下载步骤）：
+```html
+<script src="https://unpkg.com/drewmark-parser@latest/js/drewmark-parser.min.js"></script>
+```
+
+**3. 实现解析**
+
+```html
+<script>
+  // 定义朱码原文
+  const content = '# 标题\n这是一段**朱码**文本。';
+  // 将朱码原文解析为 '<h1>标题<br>这是一段<strong>朱码</strong>文本。</h1>' 并渲染到页面
+  document.getElementById('output').innerHTML = drewmarkParser(content);
+</script>
+```
+
 ## 完整示例
+
+以方式二为例，以下是一个完整的解析页面。
 
 ```html
 <!DOCTYPE html>
@@ -40,13 +89,13 @@
   <main>
     <div id="source" hidden>
 # 标题
-这是一段包含**粗体**和%%斜体%%的文本。
+这是一段包含**粗体**和%%斜体%%的朱码文本。
     </div>
   </main>
     <!-- 引用朱码 JS 解析器 -->
   <script src="js/drewmark-parser.min.js"></script>
   <script>
-    // 将解析结果输出到 <main> 标签中覆盖原文
+    // 将朱码原文解析为 '<h1>标题</h1><p>这是一段包含<strong>粗体</strong>和<em>斜体</em>的朱码文本。</p>' 并渲染到 <main> 中
     document.getElementsByTagName('main')[0].innerHTML =
       drewmarkParser(document.getElementById('source').innerText);
   </script>
@@ -117,9 +166,9 @@ English docs: [docs/doc.md](docs/doc.md)
 
 ## 相关项目
 
-* [朱码](../../../../drewneon/drewmark)（语法规范）
-* [朱码 JS 编辑器](../../../../drewneon/drewmark-js-editor)（所见即所得编辑器）
-* [朱码 JS 转换器](../../../../drewneon/drewmark-js-converter)（三种格式互转）
+* [朱码](https://gitee.com/drewneon/drewmark)（语法规范）
+* [朱码 JS 编辑器](https://gitee.com/drewneon/drewmark-js-editor)（所见即所得编辑器）
+* [朱码 JS 转换器](https://gitee.com/drewneon/drewmark-js-converter)（三种格式互转）
 
 ---
 

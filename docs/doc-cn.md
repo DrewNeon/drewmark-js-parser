@@ -18,9 +18,9 @@
 
 ## 1. 项目简介
 
-[朱码](../../../../../drewneon/drewmark) 是一款受 [Markdown](https://daringfireball.net/projects/markdown/) 和 [Showdown](https://github.com/showdownjs/showdown) 所启发的全功能型标记语言系统。
+[朱码](https://gitee.com/drewneon/drewmark) 是一款受 [Markdown](https://daringfireball.net/projects/markdown/) 和 [Showdown](https://github.com/showdownjs/showdown) 所启发的全功能型标记语言系统。
 
-*朱码 JS 解析器*是为*朱码*量身定制的一款解析器，基于原生 JavaScript（Vanilla JS）开发，无需任何第三方库即可将符合*朱码*语法的文本解析输出为 HTML 格式。*朱码 JS 解析器*支持*朱码*的全部语法规则，请查看[朱码文档](../../../../../drewneon/drewmark/blob/main/docs/doc-cn.md)了解详细的语法规则。
+*朱码 JS 解析器*是为*朱码*量身定制的一款解析器，基于原生 JavaScript（Vanilla JS）开发，无需任何第三方库即可将符合*朱码*语法的文本解析输出为 HTML 格式。*朱码 JS 解析器*支持*朱码*的全部语法规则，请查看[朱码文档](https://gitee.com/drewneon/drewmark/blob/main/docs/doc-cn.md)了解详细的语法规则。
 
 **额外说明**
 1. 表情语法兼容前后单冒号，例如`:smile:` = `::smile::`。
@@ -32,16 +32,69 @@
 
 ## 2. 快速开始
 
-只需两行 Javascript 代码即可实现对*朱码*内容的解析。
+### 方式一：工程化项目（Node.js + 构建工具）
 
-```html
-  <script src="js/drewmark-parser.min.js"></script> <!-- 引用朱码 JS 解析器 -->
-  <script>
-    const html = drewmarkParser(content); // 将朱码原文解析为 HTML
-  </script>
+适用于使用 Webpack、Vite、Rollup 等构建工具的项目。
+
+**1. 安装依赖**
+
+```bash
+npm install drewmark-parser
 ```
 
-可根据实际情况获取原文并将解析结果输出到理想的位置，以下是一个完整的网页示例。
+**2. 在源码中导入并使用**
+
+```javascript
+// src/app.js
+import { drewmarkParser } from 'drewmark-parser';
+
+const content = '# 标题\n这是一段**朱码**文本。';
+const html = drewmarkParser(content); // 实际值为：'<h1>标题<br>这是一段<strong>朱码</strong>文本。</h1>'
+
+// 将结果渲染到页面或进行后续处理
+document.getElementById('output').innerHTML = html;
+```
+
+注： `import` 语句写在项目的 `.js` / `.ts` 源文件中，由构建工具在打包时解析。浏览器加载的是构建产物，不会直接执行此语句。请确保已配置好构建流程后再运行项目。
+
+---
+
+### 方式二：浏览器直接调用（无构建工具）
+
+适用于纯 HTML 页面，无需 Node.js 环境，通过 `<script>` 标签加载后，解析器会以全局变量的形式挂载。
+
+**1. 下载依赖**
+
+从本仓库下载 `js/drewmark-parser.min.js` 至项目目录，如通过 CDN 直接引用则可跳过此步骤。
+
+**2. 引用脚本**
+
+两种方法二选一：
+
++ 引用下载到本地的脚本：
+```html
+<script src="path/to/drewmark-parser.min.js"></script>
+```
+
++ 从 CDN 直接引用脚本（跳过下载步骤）：
+```html
+<script src="https://unpkg.com/drewmark-parser@latest/js/drewmark-parser.min.js"></script>
+```
+
+**3. 实现解析**
+
+```html
+<script>
+  // 定义朱码原文
+  const content = '# 标题\n这是一段**朱码**文本。';
+  // 将朱码原文解析为 '<h1>标题<br>这是一段<strong>朱码</strong>文本。</h1>' 并渲染到页面
+  document.getElementById('output').innerHTML = drewmarkParser(content);
+</script>
+```
+
+### 完整示例
+
+以方式二为例，可根据实际情况获取原文并将解析结果输出到理想的位置，以下是一个完整的网页示例。
 
 ```html
 <!DOCTYPE html>
@@ -50,27 +103,24 @@
   <meta charset="UTF-8">
 </head>
 <body>
-  <header></header>
   <main>
-    <!-- 提供符合朱码语法规则的原文 -->
     <div id="source" hidden>
 # 标题
-这是一段包含**粗体**和%%斜体%%的文本。
-  </div>
+这是一段包含**粗体**和%%斜体%%的朱码文本。
+    </div>
   </main>
-  <footer></footer>
-  <!-- 引用朱码 JS 解析器 -->
+    <!-- 引用朱码 JS 解析器 -->
   <script src="js/drewmark-parser.min.js"></script>
   <script>
-    // 将解析结果输出到 <main> 标签中覆盖原文
-    document.getElementsByTagName('main')[0].innerHTML = 
+    // 将朱码原文解析为 '<h1>标题</h1><p>这是一段包含<strong>粗体</strong>和<em>斜体</em>的朱码文本。</p>' 并渲染到 <main> 中
+    document.getElementsByTagName('main')[0].innerHTML =
       drewmarkParser(document.getElementById('source').innerText);
   </script>
 </body>
 </html>
 ```
 
-上述示例的 `<main>` 标签中的内容会被替换为：`<h1>标题</h1><p>这是一段包含<strong>粗体</strong>和<em>斜体</em>的文本。</p>`。因为*朱码 JS 解析器*只负责将*朱码*原文解析为 HTML 格式，所以不包含任何样式 CSS 样式设计，浏览器会按默认效果呈现。不过，本项目也提供了一份样式样本—— `css/drewmark-parser.css` ，以`.drewmark-output`作为包裹解析的 HTML 代码的容器，可根据需求自行修改使用。
+上述示例的 `<main>` 标签中的内容会被替换为：`<h1>标题</h1><p>这是一段包含<strong>粗体</strong>和<em>斜体</em>的朱码文本。</p>`。因为*朱码 JS 解析器*只负责将*朱码*原文解析为 HTML 格式，所以不包含任何 CSS 样式设计，浏览器会按默认效果呈现。不过，本项目也提供了一份样式样本—— `css/drewmark-parser.css` ，以`.drewmark-output`作为包裹解析的 HTML 代码的容器，可根据需求自行修改使用。
 
 ---
 
@@ -250,13 +300,13 @@ drewmarkParser(content, {disable_syntax: ['group_name', 'syntax_name', ...]});
 
 ### 4.6 参数总览
 
-| 参数名              | 类型      | 默认值  | 说明                                     |
-| ------------------- | -------- | ------- | ---------------------------------------- |
-| `enable_emoji`      | boolean  | `false` | 是否解析表情语法                          |
-| `enable_style`      | boolean  | `false` | 是否解析样式块和样式属性语法               |
-| `enhance_codeblock` | boolean  | `true`  | 是否在解析代码块时附加显示代码语言和复制按钮 |
-| `enhance_progress`  | boolean  | `true`  | 是否在解析进度条时附加显示具体数值          |
-| `disable_syntax`    | array    | `[]`    | 禁用任意语法，即不解析相应的语法            |
+| 参数名（缩写）                | 类型      | 默认值  | 说明                                     |
+| ---------------------------- | -------- | ------- | ---------------------------------------- |
+| `enable_emoji`（`e_e`）      | boolean  | `false` | 是否解析表情语法                          |
+| `enable_style`（`e_s`）      | boolean  | `false` | 是否解析样式块和样式属性语法               |
+| `enhance_codeblock`（`e_c`） | boolean  | `true`  | 是否在解析代码块时附加显示代码语言和复制按钮 |
+| `enhance_progress`（`e_p`）  | boolean  | `true`  | 是否在解析进度条时附加显示具体数值          |
+| `disable_syntax`（`d_s`）    | array    | `[]`    | 禁用任意语法，即不解析相应的语法            |
 
 ---
 
@@ -334,4 +384,4 @@ drewmarkParser(content, {disable_syntax: ['group_name', 'syntax_name', ...]});
 
 ---
 
-*版本: v2.8*
+*版本: v1.2.8*
