@@ -246,6 +246,7 @@ drewmarkParser(content, {disable_syntax: ['group_name', 'syntax_name', ...]});
 ```
 **说明**：除上述提及的表情、代码块和代码属性以外，*朱码 JS 解析器*默认解析*朱码*其余全部语法。如不希望解析某个或某些语法，请使用此参数禁用目标语法。既可以使用组名禁用该组包含的全部语法，也可以使用语法名单独禁用，部分语法名支持不同写法。
 **接受值**：（区分大小写）
+```Javascript
 ├── `headings`                      （包含 1~6 级标题）
 ├── `text-decors`                   （文本修饰组）
 │   ├── `bode`/`strong`             （粗体）
@@ -297,6 +298,7 @@ drewmarkParser(content, {disable_syntax: ['group_name', 'syntax_name', ...]});
 │   ├── `attr-lang`                 （语言属性）
 │   ├── `attr-title`                （标题属性）
 │   └── `attr-data`                 （data属性）
+```
 
 ### 4.6 参数总览
 

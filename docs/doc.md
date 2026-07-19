@@ -285,6 +285,7 @@ drewmarkParser(content, {disable_syntax: ['group_name', 'syntax_name', ...]});
 ```
 **Description**: Except for the emojis, code blocks, and style attributes mentioned above, the DrewMark JS Parser parses all the other DrewMark syntax by default. If you wish to prevent any specific syntax or syntax groups from being parsed, use this parameter to disable them. You can disable an entire group by its group name, or individual syntax items by their specific names. Some syntax names support alternative aliases.
 **Accepted Values**: (Case-sensitive)
+```Javascript
 ├── `headings`                      (Includes heading levels 1–6)
 ├── `text-decors`                   (Text decoration group)
 │   ├── `bode`/`strong`             (Bold)
@@ -336,6 +337,7 @@ drewmarkParser(content, {disable_syntax: ['group_name', 'syntax_name', ...]});
 │   ├── `attr-lang`                 (Language attribute)
 │   ├── `attr-title`                (Title attribute)
 │   └── `attr-data`                 (Data attribute)
+```
 
 ### 4.6 Parameter Overview
 
