@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/drewmark-logo.svg" alt="DrewMark Logo">
+  <img src="images/drewmark-logo.svg" alt="DrewMark Logo" width="300" height=“250”>
 </p>
 
 <p align="center">
