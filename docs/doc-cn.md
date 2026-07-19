@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../images/logo.png" alt="朱码标志">
+  <img src="../images/drewmark-logo.svg" alt="朱码标志">
 </p>
 
 # 朱码 JS 解析器文档

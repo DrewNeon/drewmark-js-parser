@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/logo.png" alt="朱码标志">
+  <img src="images/drewmark-logo.svg" alt="朱码标志">
 </p>
 
 <p align="center">
@@ -149,7 +149,7 @@ drewmarkParser(content, { disable_syntax: ['text-decors', 'table', 'link'] });
 
 ## 特性
 
-- 完整支持朱码 v2.3 全部语法
+- 完整支持朱码 v1.2.3 全部语法
 - 兼容 Markdown 表格和表情语法
 - 零第三方依赖——纯原生 JavaScript
 - 精简压缩构建（不足 100kb）

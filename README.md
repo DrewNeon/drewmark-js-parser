@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/logo.png" alt="DrewMark Logo">
+  <img src="images/drewmark-logo.svg" alt="DrewMark Logo">
 </p>
 
 <p align="center">
@@ -151,7 +151,7 @@ See the [full documentation](docs/doc.md#45-disable-syntax) for all supported sy
 
 ## Features
 
-- Full DrewMark syntax support (v2.3 spec)
+- Full DrewMark syntax support (v1.2.3 spec)
 - Compatible with Markdown table and emoji syntax
 - No third-party dependencies — pure Vanilla JS
 - Lightweight minified build (less than 100kb)

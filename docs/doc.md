@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../images/logo.png" alt="DrewMark Logo">
+  <img src="../images/drewmark-logo.svg" alt="DrewMark Logo">
 </p>
 
 # DrewMark JS Parser Documentation
